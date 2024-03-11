@@ -21,6 +21,7 @@ struct FrameWorkTitleView: View {
                 .fontWeight(.semibold)
                 .scaledToFit()
                 .minimumScaleFactor(0.6)
+                .foregroundColor(Color(.label))
         }
         .padding()
     }

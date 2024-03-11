@@ -8,11 +8,5 @@
 import SwiftUI
 
 class FrameworkGridViewModel: ObservableObject {
-    var selectedFrameWork: Framework? {
-        didSet { isShowingDetailView = true }
-    }
-    
     let columns: [GridItem] = .init(repeating: GridItem(), count: 3)
-    
-    @Published var isShowingDetailView: Bool = false
 }

@@ -11,22 +11,18 @@ struct FrameworkGridView: View {
     @StateObject var viewModel = FrameworkGridViewModel()
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ScrollView {
                 LazyVGrid(columns: viewModel.columns) {
                     ForEach(MockData.frameworks) { framework in
-                        FrameWorkTitleView(framework: framework)
-                            .onTapGesture {
-                                viewModel.selectedFrameWork = framework
-                            }
+                        NavigationLink(value: framework) {
+                            FrameWorkTitleView(framework: framework)
+                        }
                     }
                 }
                 .navigationTitle("🍎 Frameworks")
-                .sheet(isPresented: $viewModel.isShowingDetailView) {
-                    FrameworkDetailView(
-                        framework: viewModel.selectedFrameWork!,
-                        isShowingDetailView: $viewModel.isShowingDetailView
-                    )
+                .navigationDestination(for: Framework.self) { framework in
+                    FrameworkDetailView(framework: framework)
                 }
             }
         }
